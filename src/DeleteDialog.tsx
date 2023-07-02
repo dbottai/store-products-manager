@@ -29,7 +29,7 @@ export default function DeleteDialog({
   const onConfirmButtonClick = () => {
     axios
       .delete(
-        `http://us-central1-test-b7665.cloudfunctions.net/api/stores/${storeId}/products/${product?.id}`
+        `https://us-central1-test-b7665.cloudfunctions.net/api/stores/${storeId}/products/${product?.id}`
       )
       .then(() => {
         refetch({});

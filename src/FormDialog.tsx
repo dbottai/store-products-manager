@@ -42,7 +42,7 @@ export default function FormDialog({
   >([]);
 
   const { responseData, error, loading, post } = usePostApi(
-    `http://us-central1-test-b7665.cloudfunctions.net/api/stores/${storeId}/products`
+    `https://us-central1-test-b7665.cloudfunctions.net/api/stores/${storeId}/products`
   );
 
   const handleClose = () => {

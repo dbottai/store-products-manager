@@ -55,7 +55,7 @@ function App() {
     error: errorStore,
     data: dataStore,
   } = useGetApi(
-    "http://us-central1-test-b7665.cloudfunctions.net/api/stores/" + storeId
+    "https://us-central1-test-b7665.cloudfunctions.net/api/stores/" + storeId
   );
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {

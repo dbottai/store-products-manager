@@ -50,7 +50,7 @@ export default function ProductsPage({ open, setOpen }: ProductsPageProps) {
   };
 
   const { loading, error, data, refetch } = useGetApi(
-    `http://us-central1-test-b7665.cloudfunctions.net/api/stores/ijpxNJLM732vm8AeajMR/products?page=${
+    `https://us-central1-test-b7665.cloudfunctions.net/api/stores/ijpxNJLM732vm8AeajMR/products?page=${
       page + 1
     }&elements=${pageSize}`
   );
