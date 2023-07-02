@@ -40,7 +40,7 @@ export default function ReviewsDialog({
             Reviews for {product.data.title}
           </DialogTitle>
           <DialogContent>
-            {product.data.reviews ? (
+            {product.data.reviews && product.data.reviews.length ? (
               product.data.reviews.map(function (
                 review: string,
                 index: number
