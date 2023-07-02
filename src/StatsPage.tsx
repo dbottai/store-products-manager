@@ -40,7 +40,7 @@ export default function StatsPage({ open, setOpen }: StatsPageProps) {
   });
 
   const { loading, error, data, refetch } = useGetApi(
-    `http://us-central1-test-b7665.cloudfunctions.net/api/stores/${storeId}/stats/categories`
+    `https://us-central1-test-b7665.cloudfunctions.net/api/stores/${storeId}/stats/categories`
   );
 
   useEffect(() => {
