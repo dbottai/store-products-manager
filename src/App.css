@@ -1,38 +1,54 @@
-.App {
+.store-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 65px;
+}
+
+.store-name {
+  font-size: 18px;
+  min-width: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.store-name svg {
+  display: flex;
+  margin-right: 5px;
+}
+
+.store-name .store-name-skeleton {
+  display: flex;
+  flex-grow: 1;
+  width: 100px;
+}
+
+.MuiCard-root.same-height {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.empty-state svg {
+  margin: auto;
+  margin-bottom: 0px;
+  font-size: 90px;
+  color: #ccc;
+}
+.empty-state h3 {
+  margin: 8px 0px;
+  text-align: center;
+  font-weight: normal;
+}
+.empty-state p {
+  font-size: 14px;
+  margin: 0px;
+  color: #999;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.empty-state .empty-state-icon {
+  text-align: center;
 }
