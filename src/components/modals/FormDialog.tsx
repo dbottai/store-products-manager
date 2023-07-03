@@ -175,6 +175,10 @@ export default function FormDialog({
       });
   };
 
+  const validateReviewsFields: () => boolean = () => {
+    return !reviewsFieldsValidation.every((element) => element === false);
+  };
+
   return (
     <Dialog
       open={open}
@@ -306,6 +310,7 @@ export default function FormDialog({
           <Button
             type="submit"
             disabled={
+              validateReviewsFields() ||
               loading ||
               !data.title ||
               !data.category ||
