@@ -61,7 +61,7 @@ export default function FormDialog({
 
   const addInputField = () => {
     setReviewsFields([...reviewsFields, ""]);
-    setReviewsFieldsValidation([...reviewsFieldsValidation, false]);
+    setReviewsFieldsValidation([...reviewsFieldsValidation, true]);
   };
 
   const removeInputFields = (index: number) => {
