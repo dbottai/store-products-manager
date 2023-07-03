@@ -7,9 +7,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Box, Grid, Typography } from "@mui/material";
-import { usePostApi } from "./hooks/usePostApi";
+import { usePostApi } from "../../hooks/usePostApi";
 import { enqueueSnackbar } from "notistack";
-import { storeId } from "./constants";
+import { API_BASE_URL, storeId } from "../../constants";
 
 interface FormDialogProps {
   open: boolean;
@@ -42,7 +42,7 @@ export default function FormDialog({
   >([]);
 
   const { responseData, error, loading, post } = usePostApi(
-    `https://us-central1-test-b7665.cloudfunctions.net/api/stores/${storeId}/products`
+    `${API_BASE_URL}/stores/${storeId}/products`
   );
 
   const handleClose = () => {
@@ -77,22 +77,6 @@ export default function FormDialog({
     validationRows.splice(index, 1);
     setReviewsFieldsValidation(validationRows);
   };
-
-  // const onChange = (event: React.ChangeEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-
-  //   const target = event.currentTarget;
-
-  //   const data = {
-  //     title: target.titleproduct.value,
-  //     description: target.description.value,
-  //     category: target.category.value,
-  //     employee: target.employee.value,
-  //     price: target.price.value,
-  //   };
-
-  //   setData(data);
-  // };
 
   const onChangeData = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

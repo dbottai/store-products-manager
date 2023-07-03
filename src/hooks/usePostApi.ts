@@ -2,8 +2,7 @@ import axios from "axios";
 import { useState, useCallback } from "react";
 
 export const usePostApi = <BodyData, ResponseData>(
-  query: string,
-  headers?: HeadersInit
+  query: string
 ): {
   post: (data: BodyData) => Promise<void>;
   loading: boolean;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Product } from "./models/product";
+import { Product } from "../../models/product";
 import {
   Dialog,
   DialogTitle,
@@ -8,12 +8,11 @@ import {
   Button,
 } from "@mui/material";
 import axios from "axios";
-import { storeId } from "./constants";
+import { API_BASE_URL, storeId } from "../../constants";
 import { enqueueSnackbar } from "notistack";
 
 interface DeleteDialogProps {
   product: Product | null;
-  setProduct: React.Dispatch<React.SetStateAction<Product | null>>;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   refetch: React.Dispatch<React.SetStateAction<{}>>;
@@ -21,16 +20,13 @@ interface DeleteDialogProps {
 
 export default function DeleteDialog({
   product,
-  setProduct,
   open,
   setOpen,
   refetch,
 }: DeleteDialogProps) {
   const onConfirmButtonClick = () => {
     axios
-      .delete(
-        `https://us-central1-test-b7665.cloudfunctions.net/api/stores/${storeId}/products/${product?.id}`
-      )
+      .delete(`${API_BASE_URL}/stores/${storeId}/products/${product?.id}`)
       .then(() => {
         refetch({});
         setOpen(false);
@@ -55,9 +51,7 @@ export default function DeleteDialog({
       TransitionProps={{ timeout: 50 }}
       aria-labelledby="delete-dialog"
     >
-      <DialogTitle id="delete-dialog">
-        Delete {product?.data.title}
-      </DialogTitle>
+      <DialogTitle id="delete-dialog">Delete {product?.data.title}</DialogTitle>
       <DialogContent>
         Do you really want to delete the product {product?.data.title}?
       </DialogContent>

@@ -9,18 +9,16 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { Product } from "./models/product";
+import { Product } from "../../models/product";
 
 interface ReviewsDialogProps {
   product: Product | null;
-  setProduct: React.Dispatch<React.SetStateAction<Product | null>>;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function ReviewsDialog({
   product,
-  setProduct,
   open,
   setOpen,
 }: ReviewsDialogProps) {

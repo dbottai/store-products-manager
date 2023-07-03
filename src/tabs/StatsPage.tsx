@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import useGetApi from "./hooks/useGetApi";
-import { StatsCategory } from "./models/stats";
+import useGetApi from "../hooks/useGetApi";
+import { StatsCategory } from "../models/stats";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -11,8 +11,8 @@ import {
 } from "chart.js";
 import { PolarArea } from "react-chartjs-2";
 import { Box, Container, Typography } from "@mui/material";
-import FormDialog from "./FormDialog";
-import { storeId } from "./constants";
+import FormDialog from "../components/modals/FormDialog";
+import { API_BASE_URL, storeId } from "../constants";
 import { enqueueSnackbar } from "notistack";
 
 interface StatsDataset {
@@ -40,7 +40,7 @@ export default function StatsPage({ open, setOpen }: StatsPageProps) {
   });
 
   const { loading, error, data, refetch } = useGetApi(
-    `https://us-central1-test-b7665.cloudfunctions.net/api/stores/${storeId}/stats/categories`
+    `${API_BASE_URL}/stores/${storeId}/stats/categories`
   );
 
   useEffect(() => {

@@ -9,7 +9,6 @@ import {
   Tabs,
   ThemeProvider,
   Toolbar,
-  createTheme,
 } from "@mui/material";
 import {
   AddCircleOutlined,
@@ -17,35 +16,12 @@ import {
   QueryStats,
   Store,
 } from "@mui/icons-material";
-import { storeId } from "./constants";
+import { API_BASE_URL, storeId } from "./constants";
 import useGetApi from "./hooks/useGetApi";
-import StatsPage from "./StatsPage";
-import ProductsPage from "./ProductsPage";
+import StatsPage from "./tabs/StatsPage";
+import ProductsPage from "./tabs/ProductsPage";
 import { enqueueSnackbar } from "notistack";
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#FF7527",
-    },
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          borderRadius: "18px",
-        },
-      },
-    },
-    MuiAppBar: {
-      styleOverrides: {
-        root: {
-          color: "white",
-        },
-      },
-    },
-  },
-});
+import { theme } from "./theme/theme";
 
 function App() {
   const [value, setValue] = React.useState(0);
@@ -54,9 +30,7 @@ function App() {
     loading: loadingStore,
     error: errorStore,
     data: dataStore,
-  } = useGetApi(
-    "https://us-central1-test-b7665.cloudfunctions.net/api/stores/" + storeId
-  );
+  } = useGetApi(`${API_BASE_URL}/stores/${storeId}`);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -126,9 +100,7 @@ function App() {
               <Tab icon={<QueryStats />} iconPosition="start" label="Stats" />
             </Tabs>
           </Box>
-
           {value === 0 && <ProductsPage open={open} setOpen={setOpen} />}
-
           {value === 1 && <StatsPage open={open} setOpen={setOpen} />}
         </Box>
       </div>

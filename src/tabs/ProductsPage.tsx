@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import useGetApi from "./hooks/useGetApi";
-import { Product } from "./models/product";
-import FormDialog from "./FormDialog";
+import useGetApi from "../hooks/useGetApi";
+import { Product } from "../models/product";
+import FormDialog from "../components/modals/FormDialog";
 import {
   Box,
   CircularProgress,
@@ -11,11 +11,12 @@ import {
   Typography,
 } from "@mui/material";
 import { GridView, List } from "@mui/icons-material";
-import ProductPanelItems from "./components/ProductPanelItems";
-import ProductGridItems from "./components/ProductGridItems";
-import ReviewsDialog from "./ReviewsDialog";
-import DeleteDialog from "./DeleteDialog";
+import ProductPanelItems from "../components/ProductPanelItems";
+import ProductGridItems from "../components/ProductGridItems";
+import ReviewsDialog from "../components/modals/ReviewsDialog";
+import DeleteDialog from "../components/modals/DeleteDialog";
 import { enqueueSnackbar } from "notistack";
+import { API_BASE_URL, storeId } from "../constants";
 
 interface ProductsPageProps {
   open: boolean;
@@ -50,7 +51,7 @@ export default function ProductsPage({ open, setOpen }: ProductsPageProps) {
   };
 
   const { loading, error, data, refetch } = useGetApi(
-    `https://us-central1-test-b7665.cloudfunctions.net/api/stores/ijpxNJLM732vm8AeajMR/products?page=${
+    `${API_BASE_URL}/stores/${storeId}/products?page=${
       page + 1
     }&elements=${pageSize}`
   );
@@ -133,13 +134,11 @@ export default function ProductsPage({ open, setOpen }: ProductsPageProps) {
       <FormDialog open={open} setOpen={setOpen} refetch={refetch} />
       <ReviewsDialog
         product={product}
-        setProduct={setProduct}
         open={reviewsDialogOpen}
         setOpen={setReviewsDialogOpen}
       ></ReviewsDialog>
       <DeleteDialog
         product={product}
-        setProduct={setProduct}
         open={deleteDialogOpen}
         setOpen={setDeleteDialogOpen}
         refetch={refetch}
