@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useGetApi from "../hooks/useGetApi";
-import { StatsCategory } from "../models/stats";
+import { StatsCategory, StatsState } from "../models/stats";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -14,24 +14,14 @@ import { Box, Container, Typography } from "@mui/material";
 import FormDialog from "../components/modals/FormDialog";
 import { API_BASE_URL, storeId } from "../constants";
 import { enqueueSnackbar } from "notistack";
-
-interface StatsDataset {
-  label: any;
-  data: any[];
-  borderWidth: any;
-}
-
-interface StatsState {
-  labels: string[];
-  datasets: StatsDataset[];
-}
-
-ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend, Colors);
+import CenteredLoadingSpinner from "../components/CenteredLoadingSpinner";
 
 interface StatsPageProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend, Colors);
 
 export default function StatsPage({ open, setOpen }: StatsPageProps) {
   const [stats, setStats] = useState<StatsState>({
@@ -72,7 +62,9 @@ export default function StatsPage({ open, setOpen }: StatsPageProps) {
     }
   }, [data]);
 
-  return loading ? null : (
+  return loading ? (
+    <CenteredLoadingSpinner />
+  ) : (
     <Container maxWidth={false}>
       <Typography variant="h5" pt="15px" textAlign="center">
         Stats

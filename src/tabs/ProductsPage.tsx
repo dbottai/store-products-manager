@@ -4,7 +4,6 @@ import { Product } from "../models/product";
 import FormDialog from "../components/modals/FormDialog";
 import {
   Box,
-  CircularProgress,
   Container,
   IconButton,
   TablePagination,
@@ -17,6 +16,7 @@ import ReviewsDialog from "../components/modals/ReviewsDialog";
 import DeleteDialog from "../components/modals/DeleteDialog";
 import { enqueueSnackbar } from "notistack";
 import { API_BASE_URL, storeId } from "../constants";
+import CenteredLoadingSpinner from "../components/CenteredLoadingSpinner";
 
 interface ProductsPageProps {
   open: boolean;
@@ -120,16 +120,7 @@ export default function ProductsPage({ open, setOpen }: ProductsPageProps) {
           ) : null}
         </>
       ) : (
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <CircularProgress />
-        </div>
+        <CenteredLoadingSpinner />
       )}
       <FormDialog open={open} setOpen={setOpen} refetch={refetch} />
       <ReviewsDialog

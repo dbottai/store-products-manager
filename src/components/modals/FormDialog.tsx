@@ -17,18 +17,20 @@ interface FormDialogProps {
   refetch: React.Dispatch<React.SetStateAction<{}>>;
 }
 
+const emptyData = {
+  title: "",
+  description: "",
+  category: "",
+  employee: "",
+  price: "",
+};
+
 export default function FormDialog({
   open,
   setOpen,
   refetch,
 }: FormDialogProps) {
-  const [data, setData] = React.useState({
-    title: "",
-    description: "",
-    category: "",
-    employee: "",
-    price: "",
-  });
+  const [data, setData] = React.useState(emptyData);
 
   const [validationData, setValidationData] = React.useState({
     title: false,
@@ -47,13 +49,7 @@ export default function FormDialog({
 
   const handleClose = () => {
     setOpen(false);
-    setData({
-      title: "",
-      description: "",
-      category: "",
-      employee: "",
-      price: "",
-    });
+    setData(emptyData);
     setReviewsFields([]);
     setReviewsFieldsValidation([]);
     setValidationData({
@@ -150,13 +146,7 @@ export default function FormDialog({
         console.log(responseData);
         refetch({});
         setOpen(false);
-        setData({
-          title: "",
-          description: "",
-          category: "",
-          employee: "",
-          price: "",
-        });
+        setData(emptyData);
         setReviewsFields([]);
         setReviewsFieldsValidation([]);
         setValidationData({
